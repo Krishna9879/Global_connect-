@@ -13,22 +13,26 @@ export const About = () => {
     {
       icon: Users,
       title: "Client-Centric Approach",
-      description: "We put our clients first, ensuring personalized solutions for their unique needs."
+      description: "We put our clients first, ensuring personalized solutions for their unique needs.",
+      gradient: 'from-blue-500 to-cyan-500'
     },
     {
       icon: Award,
       title: "Excellence",
-      description: "We strive for excellence in every aspect of our service delivery."
+      description: "We strive for excellence in every aspect of our service delivery.",
+      gradient: 'from-purple-500 to-pink-500'
     },
     {
       icon: Clock,
       title: "Timeliness",
-      description: "We respect your time and ensure prompt, efficient service."
+      description: "We respect your time and ensure prompt, efficient service.",
+      gradient: 'from-green-500 to-emerald-500'
     },
     {
       icon: Heart,
       title: "Passion",
-      description: "We are passionate about helping people achieve their global dreams."
+      description: "We are passionate about helping people achieve their global dreams.",
+      gradient: 'from-orange-500 to-yellow-500'
     }
   ];
 
@@ -100,14 +104,30 @@ export const About = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              className="relative group"
             >
-              <div className="flex flex-col items-center text-center">
-                <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-4">
-                  <value.icon className="w-6 h-6 text-white" />
+              <div className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-lg transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2 min-h-[300px]">
+                <motion.div
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.2, rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                  className={`p-5 rounded-full mb-6 bg-gradient-to-br ${value.gradient} group-hover:shadow-lg`}
+                >
+                  <value.icon className="w-8 h-8 text-white" />
+                </motion.div>
+
+                <div className="text-center flex-1 flex flex-col justify-between">
+                  <h3 className={`text-xl font-semibold mb-2 bg-gradient-to-r ${value.gradient} bg-clip-text text-transparent`}>
+                    {value.title}
+                  </h3>
+                  <p className="text-gray-600 text-base line-clamp-3">{value.description}</p>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileHover={{ scale: 1, opacity: 0.1 }}
+                  className={`absolute inset-0 bg-gradient-to-br ${value.gradient} rounded-2xl transition-all duration-300`}
+                />
               </div>
             </motion.div>
           ))}

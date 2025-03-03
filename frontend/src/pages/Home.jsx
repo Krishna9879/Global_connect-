@@ -177,9 +177,7 @@ const Hero = () => {
         }}
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
       >
-        <div className="w-6 h-10 border-2 border-blue-400 rounded-full flex justify-center">
-          <div className="w-2 h-2 bg-blue-400 rounded-full mt-2" />
-        </div>
+        
       </motion.div>
     </div>
   );
