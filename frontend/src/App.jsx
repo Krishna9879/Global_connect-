@@ -19,7 +19,7 @@ import FamilyVisa from './pages/services/FamilyVisa'; // Added FamilyVisa import
 
 // Country Pages
 import USA from './pages/countries/USA';
-// import { Canada } from './pages/countries/Canada';
+import Canada from './pages/countries/Canada';
 import UK from './pages/countries/UK';
 import Australia from './pages/countries/Australia';
 import NewZealand from './pages/countries/NewZealand';
@@ -42,7 +42,7 @@ function App() {
             <Route path="/services/family-visa" element={<FamilyVisa />} /> {/* Added FamilyVisa route */}
             <Route path="/countries" element={<Countries />} />
             <Route path="/countries/usa" element={<USA />} />
-            {/* <Route path="/countries/canada" element={<Canada />} /> */}
+            <Route path="/countries/canada" element={<Canada />} />
             <Route path="/countries/uk" element={<UK />} />
             <Route path="/countries/australia" element={<Australia />} />
             <Route path="/countries/new-zealand" element={<NewZealand />} />

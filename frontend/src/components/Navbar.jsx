@@ -22,7 +22,7 @@ export const Navbar = () => {
         { name: 'Work Visa', path: '/services/work-visa' },
         { name: 'PR Visa', path: '/services/pr-visa' },
         { name: 'Business Visa', path: '/services/business-visa' },
-        { name: 'Family Visa', path: '/services/business-visa' },
+        { name: 'Family Visa', path: '/services/family-visa' },
         { name: 'Tourist Visa', path: '/services/tourist-visa' }
       ]
     },
