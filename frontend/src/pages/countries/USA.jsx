@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { GraduationCap, Briefcase, Home, Building, CheckCircle } from 'lucide-react';
+import { GraduationCap, Briefcase, Home, Building, CheckCircle, Landmark } from 'lucide-react';
 import { PageHeader } from '../../components/PageHeader';
 import { ProcessSteps } from '../../components/ProcessSteps';
 import { FAQSection } from '../../components/FAQSection';
@@ -196,8 +196,8 @@ const USA = () => {
             className="relative rounded-2xl overflow-hidden shadow-xl"
           >
             <img 
-              src="https://images.unsplash.com/photo-1575535468632-345892291673?auto=format&fit=crop&q=80" 
-              alt="New York City skyline" 
+              src="https://images.unsplash.com/photo-1543832923-44667a44c804?auto=format&fit=crop&q=80" // Statue of Liberty image
+              alt="Statue of Liberty" 
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
@@ -283,6 +283,52 @@ const USA = () => {
                 </div>
               </motion.div>
             ))}
+
+            {/* Gold Card (EB-5 Visa) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.3, delay: 0.4 }}
+              className="bg-white rounded-xl overflow-hidden shadow-lg col-span-1 md:col-span-2"
+            >
+              <div className="relative h-64">
+                <img
+                  src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80" // Gold-themed image for EB-5
+                  alt="Gold Card (EB-5 Visa)"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-3 bg-gradient-to-r from-yellow-600 to-yellow-800 rounded-full">
+                        <Landmark className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white">EB-5 Immigrant Investor Program (Gold Card)</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <p className="text-gray-600 mb-6">
+                  The EB-5 Immigrant Investor Program, often referred to as the "Gold Card," provides a pathway to permanent residency in the United States for foreign investors. By investing in a new commercial enterprise that creates jobs for US workers, you and your family can obtain green cards.
+                </p>
+                <h4 className="text-lg font-semibold mb-4">Key Benefits:</h4>
+                <ul className="space-y-3">
+                  {[
+                    "Permanent residency for you, your spouse, and children under 21",
+                    "No sponsorship or labor certification required",
+                    "Freedom to live, work, or study anywhere in the US",
+                    "Pathway to US citizenship after 5 years",
+                    "Investment options starting at $800,000 (Targeted Employment Areas)"
+                  ].map((benefit, i) => (
+                    <li key={i} className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full" />
+                      <span className="text-gray-700">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
         
@@ -323,7 +369,7 @@ const USA = () => {
               {
                 title: "Cultural Diversity",
                 description: "A melting pot of cultures, cuisines, and traditions, offering a welcoming environment for immigrants from all backgrounds.",
-                image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80" // Updated to a multicultural image
               },
               {
                 title: "Quality of Life",
@@ -403,4 +449,4 @@ const USA = () => {
   );
 };
 
-export default USA; // Changed from named export to default export
+export default USA;

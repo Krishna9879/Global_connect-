@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { GraduationCap, Briefcase, Globe2, Users, Plane } from 'lucide-react';
+import { GraduationCap, Briefcase, Globe2, Users, Plane, Home } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
+// Visa Types Data
 const visaTypes = [
   {
     title: "Student Visa",
@@ -15,7 +17,8 @@ const visaTypes = [
       "Visa interview preparation",
       "Financial documentation support"
     ],
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80",
+    path: "/services/student-visa"
   },
   {
     title: "Work Visa",
@@ -28,7 +31,8 @@ const visaTypes = [
       "Skills assessment assistance",
       "Employer sponsorship guidance"
     ],
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80",
+    path: "/services/work-visa"
   },
   {
     title: "PR Visa",
@@ -41,7 +45,8 @@ const visaTypes = [
       "Application processing",
       "Settlement guidance"
     ],
-    image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80",
+    path: "/services/pr-visa"
   },
   {
     title: "Business Visa",
@@ -54,7 +59,22 @@ const visaTypes = [
       "Legal compliance support",
       "Business registration assistance"
     ],
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80",
+    path: "/services/business-visa"
+  },
+  {
+    title: "Family Visa",
+    icon: Home,
+    description: "Reunite with your loved ones abroad with our family visa services. We ensure a smooth and hassle-free process for family reunification.",
+    benefits: [
+      "Family sponsorship guidance",
+      "Document preparation",
+      "Application processing",
+      "Interview preparation",
+      "Post-arrival support"
+    ],
+    image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80",
+    path: "/services/family-visa"
   },
   {
     title: "Tourist Visa",
@@ -67,15 +87,23 @@ const visaTypes = [
       "Accommodation documentation",
       "Emergency support"
     ],
-    image: "https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&q=80"
+    image: "https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&q=80",
+    path: "/services/tourist-visa"
   }
 ];
 
+// ServiceCard Component
 const ServiceCard = ({ service, index }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
+  const navigate = useNavigate();
+
+  const handleLearnMore = () => {
+    navigate(service.path); // Redirect to the respective path
+  };
 
   return (
     <motion.div
@@ -121,6 +149,7 @@ const ServiceCard = ({ service, index }) => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={handleLearnMore}
           className="mt-8 w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
         >
           Learn More
@@ -130,6 +159,7 @@ const ServiceCard = ({ service, index }) => {
   );
 };
 
+// Services Component
 export const Services = () => {
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-16">

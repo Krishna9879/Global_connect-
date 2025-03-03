@@ -2,7 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Globe2, GraduationCap, Briefcase, Users, Building2, Sun } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
+// Countries Data
 const countries = [
   {
     name: "USA",
@@ -19,11 +21,12 @@ const countries = [
       "Optional Practical Training (OPT)",
       "Diverse job market",
       "Rich cultural experience"
-    ]
+    ],
+    path: "/countries/usa"
   },
   {
     name: "Canada",
-    flag: "https://images.unsplash.com/photo-1535041422672-8c3254ab9de9?auto=format&fit=crop&q=80",
+    flag: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80", // New Canada image (Banff National Park)
     description: "A welcoming nation with excellent quality of life and immigration-friendly policies.",
     stats: {
       universities: "100+",
@@ -36,7 +39,8 @@ const countries = [
       "Easy PR pathway",
       "Universal healthcare",
       "Multicultural society"
-    ]
+    ],
+    path: "/countries/canada"
   },
   {
     name: "UK",
@@ -53,7 +57,8 @@ const countries = [
       "Historic universities",
       "Global financial hub",
       "Rich cultural heritage"
-    ]
+    ],
+    path: "/countries/uk"
   },
   {
     name: "Australia",
@@ -70,7 +75,8 @@ const countries = [
       "High living standards",
       "Skills shortage opportunities",
       "Work-life balance"
-    ]
+    ],
+    path: "/countries/australia"
   },
   {
     name: "New Zealand",
@@ -87,7 +93,8 @@ const countries = [
       "Quality education",
       "Safe environment",
       "Beautiful landscapes"
-    ]
+    ],
+    path: "/countries/new-zealand"
   },
   {
     name: "Germany",
@@ -104,21 +111,29 @@ const countries = [
       "Job Seeker visa",
       "Strong economy",
       "Rich history"
-    ]
+    ],
+    path: "/countries/germany"
   }
 ];
 
+// CountryCard Component
 const CountryCard = ({ country, index }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
 
+  const navigate = useNavigate();
+
   const icons = {
     universities: Building2,
     avgSalary: Briefcase,
     jobGrowth: Users,
     prTime: Sun
+  };
+
+  const handleExploreOpportunities = () => {
+    navigate(country.path); // Redirect to the respective path
   };
 
   return (
@@ -185,6 +200,7 @@ const CountryCard = ({ country, index }) => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={handleExploreOpportunities}
           className="mt-8 w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
         >
           Explore Opportunities
@@ -194,6 +210,7 @@ const CountryCard = ({ country, index }) => {
   );
 };
 
+// Countries Component
 export const Countries = () => {
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-16">
