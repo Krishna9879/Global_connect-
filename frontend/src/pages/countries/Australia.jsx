@@ -5,7 +5,6 @@ import { GraduationCap, Briefcase, Home, Sun, CheckCircle } from 'lucide-react';
 import { PageHeader } from '../../components/PageHeader';
 import { ProcessSteps } from '../../components/ProcessSteps';
 import { FAQSection } from '../../components/FAQSection';
-import ContactForm from '../../components/ContactForm'; // Assuming default export per previous fixes
 import CountUp from 'react-countup';
 
 const Australia = () => {
@@ -367,40 +366,36 @@ const Australia = () => {
         {/* FAQ Section */}
         <FAQSection faqs={faqs} title="Australian Immigration FAQs" />
         
-        {/* Contact Form */}
-        <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-3xl font-bold mb-6">Ready to Start Your Australian Journey?</h2>
-            <p className="text-gray-600 mb-6">
-              Contact our Australian immigration experts today for a free consultation. We'll assess your profile and provide personalized guidance for your visa application.
-            </p>
-            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
-              <h3 className="text-lg font-semibold mb-2">Why Choose Our Australian Immigration Services?</h3>
-              <ul className="space-y-2">
-                {[
-                  "Personalized guidance from experienced Australian immigration consultants",
-                  "End-to-end support from points assessment to visa approval",
-                  "96% success rate for Australian visa applications",
-                  "Up-to-date knowledge of Australia's points-based system",
-                  "Transparent process with regular updates"
-                ].map((point, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          
-          <ContactForm 
-            title="Get Expert Guidance" 
-            subtitle="Fill out the form below, and our Australian immigration specialist will contact you within 24 hours."
-          />
-        </div>
+        {/* Contact Section without Form */}
+        <div className="mt-20">
+  <div className="max-w-2xl mx-auto text-center">
+    <h2 className="text-3xl font-bold mb-6">Ready to Start Your Australian Journey?</h2>
+    <p className="text-gray-600 mb-6">
+      Contact our Australian immigration experts today for a free consultation. We'll assess your profile and provide personalized guidance for your visa application.
+    </p>
+    <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+      <h3 className="text-lg font-semibold mb-2">Why Choose Our Australian Immigration Services?</h3>
+      <ul className="space-y-2">
+        {[
+          "Personalized guidance from experienced Australian immigration consultants",
+          "End-to-end support from points assessment to visa approval",
+          "96% success rate for Australian visa applications",
+          "Up-to-date knowledge of Australia's points-based system",
+          "Transparent process with regular updates"
+        ].map((point, i) => (
+          <li key={i} className="flex items-start gap-2">
+            <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
   );
 };
 
-export default Australia; // Default export
+export default Australia;

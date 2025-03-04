@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Globe2, GraduationCap, Briefcase, Users, Building2, Sun } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
 // Countries Data
 const countries = [
@@ -242,13 +243,15 @@ export const Countries = () => {
           className="mt-16 text-center"
         >
           <h2 className="text-3xl font-bold mb-6">Not Sure Which Country to Choose?</h2>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-xl transition-shadow"
-          >
-            Get Expert Guidance
-          </motion.button>
+          <Link to="/contact">
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-xl transition-shadow"
+  >
+    Get Expert Guidance
+  </motion.button>
+</Link>
         </motion.div>
       </div>
     </div>

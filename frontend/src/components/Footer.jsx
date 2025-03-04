@@ -65,15 +65,15 @@ export const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-blue-300" />
-                <span className="text-blue-100">info@globalconnect.com</span>
+                <span className="text-blue-100">globalconnect2812@gmail.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-blue-300" />
-                <span className="text-blue-100">+1 (555) 123-4567</span>
+                <span className="text-blue-100">+91 97234 47541 (Jitendra Patel)</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-blue-300" />
-                <span className="text-blue-100">123 Immigration Street, New York, NY 10001</span>
+                <span className="text-blue-100">208, Sahitya Arcade, Haridarshan Char Rasta, Naroda</span>
               </div>
             </div>
           </div>

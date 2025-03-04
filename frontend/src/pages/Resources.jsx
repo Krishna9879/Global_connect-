@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { BookOpen, FileText, Star, HelpCircle } from 'lucide-react';
+import { BookOpen, FileText, Star, HelpCircle, X } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Import Link for routing
 
 export const Resources = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
+  const [selectedResource, setSelectedResource] = useState(null);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 
   const resources = [
     {
@@ -17,17 +21,23 @@ export const Resources = () => {
         {
           title: "Student Visa Guide",
           description: "Complete guide to student visa applications and requirements.",
-          link: "#student-visa-guide"
+          details: "A student visa allows you to study in a foreign country. Requirements typically include proof of admission, financial stability, and health insurance. Processing times vary by country.",
+          link: "#student-visa-guide",
+          externalLink: "https://www.internationalstudent.com/study_usa/visa/"
         },
         {
           title: "Work Visa Guide",
           description: "Understanding work permits and employment visas.",
-          link: "#work-visa-guide"
+          details: "A work visa permits you to work legally in a foreign country. Requirements often include a job offer, proof of qualifications, and sometimes a labor market test.",
+          link: "#work-visa-guide",
+          externalLink: "https://www.visahq.com/work-visa/"
         },
         {
           title: "PR Visa Guide",
           description: "Step-by-step guide to permanent residency applications.",
-          link: "#pr-visa-guide"
+          details: "Permanent residency allows you to live and work indefinitely in a foreign country. Requirements may include proof of employment, language proficiency, and a clean criminal record.",
+          link: "#pr-visa-guide",
+          externalLink: "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada.html"
         }
       ]
     },
@@ -38,17 +48,23 @@ export const Resources = () => {
         {
           title: "Required Documents",
           description: "Comprehensive list of documents needed for various visas.",
-          link: "#required-documents"
+          details: "Common documents include passports, photographs, proof of financial means, and educational certificates. Always check the specific requirements for your destination country.",
+          link: "#required-documents",
+          externalLink: "https://www.travel.state.gov/content/travel/en/us-visas/visa-information-resources/forms.html"
         },
         {
           title: "Document Templates",
           description: "Sample templates for common immigration documents.",
-          link: "#document-templates"
+          details: "Templates for cover letters, resumes, and financial affidavits can help streamline your application process. Ensure all documents are tailored to your specific situation.",
+          link: "#document-templates",
+          externalLink: "https://www.overleaf.com/gallery/tagged/cv"
         },
         {
           title: "Translation Services",
           description: "Guide to document translation requirements.",
-          link: "#translation-services"
+          details: "Official translations are often required for non-English documents. Ensure translations are certified and meet the standards of the destination country.",
+          link: "#translation-services",
+          externalLink: "https://www.proz.com/translation-services"
         }
       ]
     },
@@ -59,17 +75,23 @@ export const Resources = () => {
         {
           title: "Student Success Stories",
           description: "Real stories from successful student visa applicants.",
-          link: "#student-stories"
+          details: "Read inspiring stories of students who successfully navigated the visa process and are now pursuing their dreams abroad.",
+          link: "#student-stories",
+          externalLink: "https://www.educations.com/study-abroad/success-stories"
         },
         {
           title: "Work Visa Success",
           description: "Testimonials from successful work visa applicants.",
-          link: "#work-visa-stories"
+          details: "Learn from professionals who secured work visas and are thriving in their careers overseas.",
+          link: "#work-visa-stories",
+          externalLink: "https://www.expat.com/forum/viewforum.php?id=6"
         },
         {
           title: "PR Success Stories",
           description: "Stories of successful permanent residency journeys.",
-          link: "#pr-stories"
+          details: "Discover how individuals achieved permanent residency and built new lives in their chosen countries.",
+          link: "#pr-stories",
+          externalLink: "https://www.canadavisa.com/canada-immigration-discussion-board/threads/success-stories.46999/"
         }
       ]
     },
@@ -80,21 +102,45 @@ export const Resources = () => {
         {
           title: "General FAQ",
           description: "Common questions about immigration processes.",
-          link: "#general-faq"
+          details: "Find answers to frequently asked questions about visas, documentation, and application procedures.",
+          link: "#general-faq",
+          externalLink: "https://www.uscis.gov/faq-page"
         },
         {
           title: "Visa-Specific FAQ",
           description: "Detailed answers to visa-specific questions.",
-          link: "#visa-faq"
+          details: "Get clarity on specific visa types, including student, work, and permanent residency visas.",
+          link: "#visa-faq",
+          externalLink: "https://www.visahq.com/faq/"
         },
         {
           title: "Process FAQ",
           description: "Questions about application processing and timelines.",
-          link: "#process-faq"
+          details: "Understand the steps involved in visa processing and how long each stage typically takes.",
+          link: "#process-faq",
+          externalLink: "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-processing-times.html"
         }
       ]
     }
   ];
+
+  const openModal = (resource, index) => {
+    setSelectedResource(resource);
+    setSelectedItemIndex(index);
+  };
+
+  const closeModal = () => {
+    setSelectedResource(null);
+    setSelectedItemIndex(0);
+  };
+
+  const navigate = (direction) => {
+    if (direction === 'next') {
+      setSelectedItemIndex((prevIndex) => (prevIndex + 1) % selectedResource.items.length);
+    } else {
+      setSelectedItemIndex((prevIndex) => (prevIndex - 1 + selectedResource.items.length) % selectedResource.items.length);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-16">
@@ -121,7 +167,8 @@ export const Resources = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden"
+              className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer"
+              onClick={() => openModal(resource, 0)}
             >
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-6">
@@ -133,9 +180,8 @@ export const Resources = () => {
 
                 <div className="space-y-6">
                   {resource.items.map((item, i) => (
-                    <motion.a
+                    <motion.div
                       key={i}
-                      href={item.link}
                       initial={{ opacity: 0, x: -20 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.3, delay: 0.5 + i * 0.1 }}
@@ -143,13 +189,68 @@ export const Resources = () => {
                     >
                       <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                       <p className="text-gray-600">{item.description}</p>
-                    </motion.a>
+                    </motion.div>
                   ))}
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {selectedResource && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-xl shadow-lg w-full max-w-2xl relative"
+            >
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                <X className="w-6 h-6 text-gray-600" />
+              </button>
+
+              <div className="p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full">
+                    <selectedResource.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h2 className="text-2xl font-bold">{selectedResource.title}</h2>
+                </div>
+
+                <div className="space-y-6">
+                  <h3 className="text-lg font-semibold mb-2">{selectedResource.items[selectedItemIndex].title}</h3>
+                  <p className="text-gray-600">{selectedResource.items[selectedItemIndex].details}</p>
+                  <a
+                    href={selectedResource.items[selectedItemIndex].externalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    Learn More
+                  </a>
+                </div>
+
+                <div className="flex justify-between mt-8">
+                  <button
+                    onClick={() => navigate('prev')}
+                    className="px-6 py-2 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors"
+                  >
+                    Previous
+                  </button>
+                  <button
+                    onClick={() => navigate('next')}
+                    className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:shadow-xl transition-shadow"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -158,13 +259,15 @@ export const Resources = () => {
           className="mt-16 text-center"
         >
           <h2 className="text-3xl font-bold mb-6">Need More Information?</h2>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-xl transition-shadow"
-          >
-            Contact Our Experts
-          </motion.button>
+          <Link to="/contact">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-xl transition-shadow"
+            >
+              Contact Our Experts
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </div>

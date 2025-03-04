@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Users, Award, Clock, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom'; 
 
 export const About = () => {
   const [ref, inView] = useInView({
@@ -140,13 +141,15 @@ export const About = () => {
           className="mt-16 text-center"
         >
           <h2 className="text-3xl font-bold mb-6">Ready to Start Your Journey?</h2>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-xl transition-shadow"
-          >
-            Contact Us Today
-          </motion.button>
+          <Link to="/contact">
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-xl transition-shadow"
+  >
+    Contact Us Today
+  </motion.button>
+</Link>
         </motion.div>
       </div>
     </div>

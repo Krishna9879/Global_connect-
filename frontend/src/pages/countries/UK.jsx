@@ -5,7 +5,6 @@ import { GraduationCap, Briefcase, Building, Globe, CheckCircle } from 'lucide-r
 import { PageHeader } from '../../components/PageHeader';
 import { ProcessSteps } from '../../components/ProcessSteps';
 import { FAQSection } from '../../components/FAQSection';
-import ContactForm from '../../components/ContactForm'; // Already correctly using default import
 import CountUp from 'react-countup';
 
 const UK = () => {
@@ -365,9 +364,9 @@ const UK = () => {
         {/* FAQ Section */}
         <FAQSection faqs={faqs} title="UK Immigration FAQs" />
         
-        {/* Contact Form */}
-        <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
+        {/* Centered Contact Section */}
+        <div className="mt-20">
+          <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Ready to Start Your British Journey?</h2>
             <p className="text-gray-600 mb-6">
               Contact our UK immigration experts today for a free consultation. We'll assess your profile and provide personalized guidance for your visa application.
@@ -390,15 +389,10 @@ const UK = () => {
               </ul>
             </div>
           </div>
-          
-          <ContactForm 
-            title="Get Expert Guidance" 
-            subtitle="Fill out the form below, and our UK immigration specialist will contact you within 24 hours."
-          />
         </div>
       </div>
     </div>
   );
 };
 
-export default UK; // Changed from named export to default export
+export default UK;

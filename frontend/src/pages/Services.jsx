@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GraduationCap, Briefcase, Globe2, Users, Plane, Home } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
 // Visa Types Data
 const visaTypes = [
@@ -191,13 +192,15 @@ export const Services = () => {
           className="mt-16 text-center"
         >
           <h2 className="text-3xl font-bold mb-6">Ready to Start Your Journey?</h2>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-xl transition-shadow"
-          >
-            Get Free Consultation
-          </motion.button>
+          <Link to="/contact">
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-xl transition-shadow"
+  >
+    Get Free Consultation
+  </motion.button>
+</Link>
         </motion.div>
       </div>
     </div>

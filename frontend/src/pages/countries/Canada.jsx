@@ -5,7 +5,6 @@ import { GraduationCap, Briefcase, Home, Building, CheckCircle } from 'lucide-re
 import { PageHeader } from '../../components/PageHeader';
 import { ProcessSteps } from '../../components/ProcessSteps';
 import { FAQSection } from '../../components/FAQSection';
-import ContactForm from '../../components/ContactForm';
 import CountUp from 'react-countup';
 
 const Canada = () => {
@@ -365,9 +364,9 @@ const Canada = () => {
         {/* FAQ Section */}
         <FAQSection faqs={faqs} title="Canadian Immigration FAQs" />
         
-        {/* Contact Form */}
-        <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
+        {/* Centered Contact Section */}
+        <div className="mt-20">
+          <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Ready to Start Your Canadian Journey?</h2>
             <p className="text-gray-600 mb-6">
               Contact our Canadian immigration experts today for a free consultation. We’ll assess your profile and provide tailored guidance for your visa or PR application.
@@ -390,11 +389,6 @@ const Canada = () => {
               </ul>
             </div>
           </div>
-          
-          <ContactForm 
-            title="Get Expert Guidance" 
-            subtitle="Fill out the form below, and our Canadian immigration specialist will contact you within 24 hours."
-          />
         </div>
       </div>
     </div>

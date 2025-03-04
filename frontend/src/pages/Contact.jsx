@@ -7,19 +7,19 @@ export const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+1 (555) 123-4567", "+1 (555) 987-6543"],
+      details: ["+91 97234 47541", " (Jitendra Patel)"],
       gradient: "from-blue-500 to-cyan-500"
     },
     {
       icon: Mail,
       title: "Email",
-      details: ["info@globalconnect.com", "support@globalconnect.com"],
+      details: ["globalconnect2812@gmail.com"],
       gradient: "from-purple-500 to-pink-500"
     },
     {
       icon: MapPin,
       title: "Location",
-      details: ["123 Immigration Street", "New York, NY 10001"],
+      details: ["208, Sahitya Arcade, Haridarshan Char Rasta, Naroda"],
       gradient: "from-orange-500 to-red-500"
     },
     {
