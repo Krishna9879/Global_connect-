@@ -6,7 +6,6 @@ import { PageHeader } from '../../components/PageHeader';
 import { ProcessSteps } from '../../components/ProcessSteps';
 import { FAQSection } from '../../components/FAQSection';
 import { TestimonialCard } from '../../components/TestimonialCard';
-import ContactForm from '../../components/ContactForm';
 
 const WorkVisa = () => {
   const [ref, inView] = useInView({
@@ -317,8 +316,9 @@ const WorkVisa = () => {
 
         <FAQSection faqs={commonQuestions} title="Visa FAQ" />
 
-        <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
+        {/* Centered Contact Section */}
+        <div className="mt-20">
+          <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Begin Your International Career</h2>
             <p className="text-gray-600 mb-6">
               Contact us for a free consultation today.
@@ -341,11 +341,6 @@ const WorkVisa = () => {
               </ul>
             </div>
           </div>
-
-          <ContactForm
-            title="Consult Our Experts"
-            subtitle="Submit your info for a reply within 24 hours."
-          />
         </div>
       </div>
     </div>

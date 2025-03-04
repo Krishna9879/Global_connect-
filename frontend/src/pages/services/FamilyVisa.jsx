@@ -6,7 +6,6 @@ import { PageHeader } from '../../components/PageHeader';
 import { ProcessSteps } from '../../components/ProcessSteps';
 import { FAQSection } from '../../components/FAQSection';
 import { TestimonialCard } from '../../components/TestimonialCard';
-import ContactForm from '../../components/ContactForm'; // Already using default import
 
 const FamilyVisa = () => {
   const [ref, inView] = useInView({
@@ -372,9 +371,9 @@ const FamilyVisa = () => {
         {/* FAQ Section */}
         <FAQSection faqs={faqs} title="Family Visa FAQs" />
         
-        {/* Contact Form */}
-        <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
+        {/* Centered Contact Section */}
+        <div className="mt-20">
+          <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Ready to Reunite with Your Family?</h2>
             <p className="text-gray-600 mb-6">
               Contact our family visa experts today for a free consultation. We'll assess your situation and provide personalized guidance for your family reunification journey.
@@ -397,15 +396,10 @@ const FamilyVisa = () => {
               </ul>
             </div>
           </div>
-          
-          <ContactForm 
-            title="Start Your Family Reunification Journey" 
-            subtitle="Fill out the form below, and our family visa specialist will contact you within 24 hours."
-          />
         </div>
       </div>
     </div>
   );
 };
 
-export default FamilyVisa; // Changed from named export to default export
+export default FamilyVisa;

@@ -6,7 +6,6 @@ import { PageHeader } from '../../components/PageHeader';
 import { ProcessSteps } from '../../components/ProcessSteps';
 import { FAQSection } from '../../components/FAQSection';
 import { TestimonialCard } from '../../components/TestimonialCard';
-import ContactForm from '../../components/ContactForm'; // Already correctly using default import
 import { PhotoGallery } from '../../components/PhotoGallery';
 
 const TouristVisa = () => {
@@ -400,9 +399,9 @@ const TouristVisa = () => {
         {/* FAQ Section */}
         <FAQSection faqs={travelFAQs} title="Travel Visa Queries" />
         
-        {/* Contact Section */}
-        <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
+        {/* Centered Contact Section */}
+        <div className="mt-20">
+          <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Start Your Adventure</h2>
             <p className="text-gray-600 mb-6">
               Reach out for a free consultation on your travel visa needs.
@@ -425,15 +424,10 @@ const TouristVisa = () => {
               </ul>
             </div>
           </div>
-          
-          <ContactForm 
-            title="Begin Your Trip" 
-            subtitle="Submit your details for a reply within 24 hours."
-          />
         </div>
       </div>
     </div>
   );
 };
 
-export default TouristVisa; // Changed from named export to default export
+export default TouristVisa;
