@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { CheckCircle, Globe, Users, Clock, X } from "lucide-react";
+import globalReachImage from '../assets/global_reach.jpg'; // Example if the file name is lowercaseg';
+import fastprocess from '../assets/fastProcsess.avif';
+import dedicatedTeam from '../assets/DedicatedTeam.avif';
+import student1 from '../assets/student1.webp';
+import student2 from '../assets/student2.webp';
+import student5 from '../assets/student5.avif';
+import student4 from '../assets/student4.avif';
+import student3 from '../assets/student3.avif';
+
+
 
 // Features Data
 const features = [
@@ -16,7 +26,7 @@ const features = [
     icon: Globe,
     title: "Global Reach",
     description: "Access to immigration opportunities in multiple countries worldwide.",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80",
+    image: globalReachImage,
     detailedInfo:
       "We’ve established partnerships with top universities and colleges across 25+ countries, including the USA, Canada, UK, Australia, and Europe. Our extensive network allows us to recommend programs that align with your academic goals and career aspirations. Whether you’re aiming for a bachelor’s, master’s, or short-term exchange program, we’ve got you covered globally.",
   },
@@ -24,7 +34,7 @@ const features = [
     icon: Users,
     title: "Dedicated Team",
     description: "Experienced immigration specialists committed to your success.",
-    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80",
+    image: dedicatedTeam,
     detailedInfo:
       "Our team consists of seasoned professionals with over a decade of experience in international education and visa processing. Each member is trained to handle complex cases, offering personalized support from profile assessment to post-arrival assistance. We pride ourselves on a 98% visa success rate, reflecting our commitment to your educational dreams.",
   },
@@ -32,34 +42,48 @@ const features = [
     icon: Clock,
     title: "Fast Processing",
     description: "Efficient handling of your application with minimal processing time.",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80",
+    image: fastprocess,
     detailedInfo:
       "Time is critical, and we ensure your application moves quickly. Our streamlined system allows document review within 48 hours, followed by swift submission to the relevant authorities. We provide regular updates on your application status and expedite processes where possible, helping you meet university deadlines without stress.",
   },
 ];
 
-// Testimonials Data
+// Testimonials Data (Updated with Indian student names and images)
 const testimonials = [
   {
-    name: "Sarah Johnson",
+    name: "Priya Sharma",
     role: "International Student",
     content:
       "Thanks to GlobalMove, my dream of studying abroad became a reality! The team guided me through every step, from choosing a university to getting my visa approved.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80",
+    image: student2, // Indian student image
   },
   {
-    name: "Michael Chen",
+    name: "Rahul Singh",
     role: "Graduate Student",
     content:
       "Professional service that made my university application process smooth. Their expertise saved me time and effort, and I got accepted into my dream program!",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80",
+    image: student1, // Indian student image
   },
   {
-    name: "Emily Brown",
+    name: "Ananya Patel",
     role: "Exchange Student",
     content:
       "Incredible support throughout my student visa application process. They were always available to answer my questions and made the entire experience stress-free.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80",
+    image: student4, // Indian student image
+  },
+  {
+    name: "Arjun Mehta",
+    role: "MBA Student",
+    content:
+      "GlobalMove helped me secure admission to a top business school in the USA. Their guidance was invaluable, and I couldn’t have done it without them!",
+    image:student3, // Indian student image
+  },
+  {
+    name: "Kavya Reddy",
+    role: "Engineering Student",
+    content:
+      "The team at GlobalMove is amazing! They helped me navigate the complex visa process and ensured I got my student visa on time.",
+    image: student5, // Indian student image
   },
 ];
 

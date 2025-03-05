@@ -1,34 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [status, setStatus] = useState('');
+
   const contactInfo = [
     {
       icon: Phone,
-      title: "Phone",
-      details: ["+91 97234 47541", " (Jitendra Patel)"],
-      gradient: "from-blue-500 to-cyan-500"
+      title: 'Phone',
+      details: ['+91 97234 47541', ' (Jitendra Patel)'],
+      gradient: 'from-blue-500 to-cyan-500',
     },
     {
       icon: Mail,
-      title: "Email",
-      details: ["globalconnect2812@gmail.com"],
-      gradient: "from-purple-500 to-pink-500"
+      title: 'Email',
+      details: ['globalconnect2812@gmail.com'],
+      gradient: 'from-purple-500 to-pink-500',
     },
     {
       icon: MapPin,
-      title: "Location",
-      details: ["208, Sahitya Arcade, Haridarshan Char Rasta, Naroda"],
-      gradient: "from-orange-500 to-red-500"
+      title: 'Location',
+      details: ['208, Sahitya Arcade, Haridarshan Char Rasta, Naroda'],
+      gradient: 'from-orange-500 to-red-500',
     },
     {
       icon: Clock,
-      title: "Business Hours",
-      details: ["Monday - Friday: 9AM - 6PM", "Saturday: 10AM - 2PM"],
-      gradient: "from-green-500 to-emerald-500"
-    }
+      title: 'Business Hours',
+      details: ['Monday - Friday: 9AM - 6PM', 'Saturday: 10AM - 2PM'],
+      gradient: 'from-green-500 to-emerald-500',
+    },
   ];
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStatus('Sending...');
+
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const userID = import.meta.env.VITE_EMAILJS_USER_ID;
+
+    console.log('Service ID:', serviceID);
+    console.log('Template ID:', templateID);
+    console.log('User ID:', userID);
+    console.log('Form Data:', formData);
+
+    emailjs.send(serviceID, templateID, formData, userID)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        setStatus('Message sent successfully!');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      })
+      .catch((error) => {
+        console.error('FAILED...', error); // Log full error object
+        setStatus(`Failed to send message: ${error.text || 'Unknown error'}`);
+      });
+
+    setTimeout(() => setStatus(''), 5000);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-16">
@@ -75,15 +116,19 @@ export const Contact = () => {
             className="bg-white p-8 rounded-xl shadow-lg"
           >
             <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Name
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Your name"
+                  required
                 />
               </div>
               <div>
@@ -92,8 +137,12 @@ export const Contact = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Your email"
+                  required
                 />
               </div>
               <div>
@@ -102,8 +151,12 @@ export const Contact = () => {
                 </label>
                 <input
                   type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Subject"
+                  required
                 />
               </div>
               <div>
@@ -111,17 +164,31 @@ export const Contact = () => {
                   Message
                 </label>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32"
                   placeholder="How can we help you?"
+                  required
                 ></textarea>
               </div>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                type="submit"
                 className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
               >
                 Send Message
               </motion.button>
+              {status && (
+                <p
+                  className={`text-center mt-4 ${
+                    status.includes('success') ? 'text-green-600' : 'text-red-600'
+                  }`}
+                >
+                  {status}
+                </p>
+              )}
             </form>
           </motion.div>
 
@@ -135,19 +202,27 @@ export const Contact = () => {
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-semibold mb-2">What services do you offer?</h3>
-                <p className="text-gray-600">We offer comprehensive immigration services including student visas, work visas, permanent residency, and citizenship applications.</p>
+                <p className="text-gray-600">
+                  We offer comprehensive immigration services including student visas, work visas, permanent residency, and citizenship applications.
+                </p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-2">How long does the process take?</h3>
-                <p className="text-gray-600">Processing times vary depending on the type of application and destination country. During your consultation, we'll provide specific timelines for your case.</p>
+                <p className="text-gray-600">
+                  Processing times vary depending on the type of application and destination country. During your consultation, we'll provide specific timelines for your case.
+                </p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-2">Do you offer free consultations?</h3>
-                <p className="text-gray-600">Yes, we offer free initial consultations to understand your needs and provide the best immigration pathway for your situation.</p>
+                <p className="text-gray-600">
+                  Yes, we offer free initial consultations to understand your needs and provide the best immigration pathway for your situation.
+                </p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-2">What documents do I need?</h3>
-                <p className="text-gray-600">Required documents vary by visa type and country. We'll provide a comprehensive checklist during your consultation.</p>
+                <p className="text-gray-600">
+                  Required documents vary by visa type and country. We'll provide a comprehensive checklist during your consultation.
+                </p>
               </div>
             </div>
           </motion.div>

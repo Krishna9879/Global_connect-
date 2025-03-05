@@ -1,40 +1,33 @@
 import React, { useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import studentvisa from '../assets/student_visa.avif';
+import studyabrod from '../assets/study_abroad.webp';
+import universityadmission from '../assets/university_addmission.avif';
 
 // Services Data
 const services = [
   {
     title: "Study Abroad Programs",
     description: "Expert guidance for international education opportunities.",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80",
+    image: studyabrod,
     detailedInfo:
       "Our Study Abroad Programs offer personalized guidance to help you choose the best universities and courses worldwide. From selecting the right program to preparing your application, we ensure you have the best chance of success. Our team provides end-to-end support, including scholarship assistance and pre-departure briefings.",
   },
   {
     title: "Student Visas",
     description: "Comprehensive support for student visa applications.",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80",
+    image: studentvisa,
     detailedInfo:
       "Navigating the visa process can be complex, but we make it simple. Our experts assist with document preparation, application submission, and interview preparation. We stay updated with the latest visa regulations to ensure a smooth and successful application process.",
   },
   {
     title: "University Admissions",
     description: "Strategic guidance for university applications worldwide.",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80",
+    image: universityadmission,
     detailedInfo:
       "Our University Admissions service helps you craft a compelling application that stands out. From writing a strong personal statement to securing recommendation letters, we guide you through every step. We also provide insights into university rankings and program suitability to help you make informed decisions.",
   },
-];
-
-// Education Images (Success Stories)
-const educationImages = [
-  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&q=80",
 ];
 
 // ServiceCard Component
@@ -45,31 +38,32 @@ const ServiceCard = ({ service, index, onCardClick }) => {
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100 * (index + 1), -100 * (index + 1)]);
+  const y = useTransform(scrollYProgress, [0, 1], [50 * (index + 1), -50 * (index + 1)]);
 
   return (
     <motion.div
       ref={ref}
       style={{ y }}
-      className="group relative overflow-hidden rounded-lg cursor-pointer"
+      className="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer h-[400px] flex flex-col"
       onClick={() => onCardClick(index)}
     >
-      <div className="aspect-w-16 aspect-h-9">
+      <div className="h-2/3 overflow-hidden">
         <img
           src={service.image}
           alt={service.title}
-          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
-        <h3 className="text-2xl font-bold text-white mb-2">{service.title}</h3>
-        <p className="text-white/90">{service.description}</p>
+      <div className="h-1/3 bg-white p-5 flex flex-col justify-center">
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">{service.title}</h3>
+        <p className="text-gray-600 text-sm line-clamp-2">{service.description}</p>
       </div>
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
     </motion.div>
   );
 };
 
-// Modal Component
+// Modal Component (unchanged)
 const Modal = ({ isOpen, onClose, selectedService, onNext, onPrev }) => {
   if (!selectedService) return null;
 
@@ -103,7 +97,7 @@ const Modal = ({ isOpen, onClose, selectedService, onNext, onPrev }) => {
               className="w-full h-48 object-cover rounded-lg mb-6"
             />
             <h3 className="text-2xl font-bold mb-3">{selectedService.title}</h3>
-            <p className="text-gray-600 mb-4">{selectedService.description}</p>
+            <p className="text-gray-600 mb-4">{service.description}</p>
             <p className="text-gray-700 mb-6">{selectedService.detailedInfo}</p>
 
             <div className="flex justify-between">
@@ -146,19 +140,21 @@ export const Services = () => {
   };
 
   return (
-    <section className="py-20 overflow-hidden">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <h2 className="text-5xl font-bold mb-6">How We Help You</h2>
-          <p className="text-xl text-gray-600">Your pathway to international education success</p>
+          <h2 className="text-5xl font-bold mb-6 text-gray-800">How We Help You</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Your pathway to international education success starts here with our expert guidance
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
@@ -181,29 +177,27 @@ export const Services = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="relative bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl py-16 px-8 text-center text-white overflow-hidden"
         >
-          <h2 className="text-4xl font-bold mb-6">Success Stories</h2>
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-full h-full bg-[url('https://www.transparenttextures.com/patterns/diagonal-lines.png')]"></div>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 relative z-10">Success Stories</h2>
+          <motion.div
+            initial={{ scale: 0.95 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
+            className="relative z-10"
+          >
+            <p className="text-3xl md:text-4xl font-semibold mb-4">Coming Soon</p>
+            <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8">
+              We're gathering inspiring stories from students who've successfully embarked on their
+              international education journeys with us. Stay tuned for amazing testimonials and
+              real success stories!
+            </p>
+          
+          </motion.div>
         </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-20">
-          {educationImages.map((image, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="relative aspect-w-4 aspect-h-3 overflow-hidden rounded-lg"
-            >
-              <img
-                src={image}
-                alt={`Success Story ${index + 1}`}
-                className="object-cover w-full h-full hover:scale-110 transition-transform duration-500"
-              />
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );

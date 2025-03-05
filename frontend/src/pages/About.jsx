@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Users, Award, Clock, Heart, Globe, BookOpen, Briefcase, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import user1 from '../assets/UserImage1.jpg';
 
 export const About = () => {
   const [ref, inView] = useInView({
@@ -64,11 +65,11 @@ export const About = () => {
             transition={{ duration: 0.5 }}
             className="relative"
           >
-            <img
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
-              alt="Team meeting"
-              className="rounded-2xl shadow-lg"
-            />
+           <img
+  src={user1}
+  alt="Jitendra Patel"
+  className="rounded-2xl shadow-lg w-full h-[550px] object-cover transform scale-90"
+/>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl" />
           </motion.div>
 
