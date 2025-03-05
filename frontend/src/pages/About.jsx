@@ -177,7 +177,7 @@ export const About = () => {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-xl transition-shadow"
             >
-              Contact Jitendra Today
+              Contact Us Today
             </motion.button>
           </Link>
         </motion.div>
