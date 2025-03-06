@@ -28,7 +28,10 @@ export const Contact = () => {
     {
       icon: MapPin,
       title: 'Location',
-      details: ['208, Sahitya Arcade, Haridarshan Char Rasta, Naroda'],
+      details: [
+        '208, Sahitya Arcade, Haridarshan Char Rasta, Naroda',
+        'GSTIN: 24ABFPP3456P126'
+      ],
       gradient: 'from-orange-500 to-red-500',
     },
     {
@@ -64,7 +67,7 @@ export const Contact = () => {
         setFormData({ name: '', email: '', subject: '', message: '' });
       })
       .catch((error) => {
-        console.error('FAILED...', error); // Log full error object
+        console.error('FAILED...', error);
         setStatus(`Failed to send message: ${error.text || 'Unknown error'}`);
       });
 

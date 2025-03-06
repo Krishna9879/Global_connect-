@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { CheckCircle, Globe, Users, Clock, X } from "lucide-react";
-import globalReachImage from '../assets/global_reach.jpg'; // Example if the file name is lowercaseg';
+import globalReachImage from '../assets/global_reach.jpg';
 import fastprocess from '../assets/fastProcsess.avif';
 import dedicatedTeam from '../assets/DedicatedTeam.avif';
 import student1 from '../assets/student1.webp';
@@ -9,8 +9,6 @@ import student2 from '../assets/student2.webp';
 import student5 from '../assets/student5.avif';
 import student4 from '../assets/student4.avif';
 import student3 from '../assets/student3.avif';
-
-
 
 // Features Data
 const features = [
@@ -25,10 +23,10 @@ const features = [
   {
     icon: Globe,
     title: "Global Reach",
-    description: "Access to immigration opportunities in multiple countries worldwide.",
+    description: "Access to immigration opportunities in 72 countries worldwide.",
     image: globalReachImage,
     detailedInfo:
-      "We’ve established partnerships with top universities and colleges across 25+ countries, including the USA, Canada, UK, Australia, and Europe. Our extensive network allows us to recommend programs that align with your academic goals and career aspirations. Whether you’re aiming for a bachelor’s, master’s, or short-term exchange program, we’ve got you covered globally.",
+      "We’ve established partnerships with top universities and colleges across 72 countries, including the USA, Canada, UK, Australia, and Europe. Our extensive network allows us to recommend programs that align with your academic goals and career aspirations. Whether you’re aiming for a bachelor’s, master’s, or short-term exchange program, we’ve got you covered globally.",
   },
   {
     icon: Users,
@@ -36,7 +34,7 @@ const features = [
     description: "Experienced immigration specialists committed to your success.",
     image: dedicatedTeam,
     detailedInfo:
-      "Our team consists of seasoned professionals with over a decade of experience in international education and visa processing. Each member is trained to handle complex cases, offering personalized support from profile assessment to post-arrival assistance. We pride ourselves on a 98% visa success rate, reflecting our commitment to your educational dreams.",
+      "Our team consists of seasoned professionals with over a decade of experience in international education and visa processing. Each member is trained to handle complex cases, offering personalized support from profile assessment to post-arrival assistance. We pride ourselves on a 97% visa success rate, reflecting our commitment to your educational dreams.",
   },
   {
     icon: Clock,
@@ -48,42 +46,49 @@ const features = [
   },
 ];
 
-// Testimonials Data (Updated with Indian student names and images)
+// Testimonials Data (Updated with new student names and tailored descriptions)
 const testimonials = [
   {
-    name: "Priya Sharma",
-    role: "International Student",
-    content:
-      "Thanks to GlobalMove, my dream of studying abroad became a reality! The team guided me through every step, from choosing a university to getting my visa approved.",
-    image: student2, // Indian student image
-  },
-  {
-    name: "Rahul Singh",
-    role: "Graduate Student",
-    content:
-      "Professional service that made my university application process smooth. Their expertise saved me time and effort, and I got accepted into my dream program!",
-    image: student1, // Indian student image
-  },
-  {
-    name: "Ananya Patel",
-    role: "Exchange Student",
-    content:
-      "Incredible support throughout my student visa application process. They were always available to answer my questions and made the entire experience stress-free.",
-    image: student4, // Indian student image
-  },
-  {
-    name: "Arjun Mehta",
+    name: "Fenil Patel",
     role: "MBA Student",
     content:
-      "GlobalMove helped me secure admission to a top business school in the USA. Their guidance was invaluable, and I couldn’t have done it without them!",
-    image:student3, // Indian student image
+      "GlobalConnect made my MBA journey abroad seamless! From selecting top business schools to securing my visa, their expertise in management education was invaluable.",
+    image: student2,
   },
   {
-    name: "Kavya Reddy",
-    role: "Engineering Student",
+    name: "Ashish Patel",
+    role: "IT Student",
     content:
-      "The team at GlobalMove is amazing! They helped me navigate the complex visa process and ensured I got my student visa on time.",
-    image: student5, // Indian student image
+      "Thanks to GlobalConnect, I’m now studying IT at a leading university. Their team streamlined my application and visa process, ensuring I could focus on my tech career.",
+    image: student1,
+  },
+  {
+    name: "Kripa Joshi",
+    role: "Graduate Student",
+    content:
+      "The support from GlobalConnect was exceptional for my graduate studies. They guided me through university applications and visa approvals with ease and confidence.",
+    image: student4,
+  },
+  {
+    name: "Neha Prajapati",
+    role: "Nursing Student",
+    content:
+      "GlobalConnect helped me secure my nursing program abroad. Their knowledge of healthcare education and visa requirements made the entire process stress-free!",
+    image: student5,
+  },
+  {
+    name: "Kenil Patel",
+    role: "M Pharm Student",
+    content:
+      "With GlobalConnect’s guidance, I got into a top pharmacy program. Their expertise in pharmaceutical education and fast visa processing were key to my success.",
+    image: student3,
+  },
+  {
+    name: "Vishva Joshi",
+    role: "Graduate Student",
+    content:
+      "GlobalConnect turned my graduate study dreams into reality. Their personalized support for my application and visa process was outstanding from start to finish.",
+    image: student2,
   },
 ];
 
@@ -206,7 +211,7 @@ export const Features = () => {
           <h2 className="text-5xl font-bold mb-6">Why Choose Us</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We transform your dream of studying abroad into reality with expert support and
-            personalized solutions.
+            personalized solutions across 72 countries, boasting a 97% success rate.
           </p>
         </motion.div>
 
