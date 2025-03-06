@@ -111,7 +111,7 @@ export const Contact = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -199,37 +199,57 @@ export const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-white p-8 rounded-xl shadow-lg"
+            className="bg-white p-8 rounded-xl shadow-lg flex flex-col"
           >
-            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">What services do you offer?</h3>
-                <p className="text-gray-600">
-                  We offer comprehensive immigration services including student visas, work visas, permanent residency, and citizenship applications.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2">How long does the process take?</h3>
-                <p className="text-gray-600">
-                  Processing times vary depending on the type of application and destination country. During your consultation, we'll provide specific timelines for your case.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Do you offer free consultations?</h3>
-                <p className="text-gray-600">
-                  Yes, we offer free initial consultations to understand your needs and provide the best immigration pathway for your situation.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2">What documents do I need?</h3>
-                <p className="text-gray-600">
-                  Required documents vary by visa type and country. We'll provide a comprehensive checklist during your consultation.
-                </p>
-              </div>
+            <h2 className="text-2xl font-bold mb-6">Our Location</h2>
+            <div className="flex-grow">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509364!2d144.9537363153167!3d-37.81627997975146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ5JzU4LjYiUyAxNDTCsDU3JzEzLjUiRQ!5e0!3m2!1sen!2sus!4v1635781234567!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: '0.75rem' }}
+                allowFullScreen=""
+                loading="lazy"
+                title="Our Location"
+              ></iframe>
             </div>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white p-8 rounded-xl shadow-lg"
+        >
+          <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-2">What services do you offer?</h3>
+              <p className="text-gray-600">
+                We offer comprehensive immigration services including student visas, work visas, permanent residency, and citizenship applications.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-2">How long does the process take?</h3>
+              <p className="text-gray-600">
+                Processing times vary depending on the type of application and destination country. During your consultation, we'll provide specific timelines for your case.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Do you offer free consultations?</h3>
+              <p className="text-gray-600">
+                Yes, we offer free initial consultations to understand your needs and provide the best immigration pathway for your situation.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-2">What documents do I need?</h3>
+              <p className="text-gray-600">
+                Required documents vary by visa type and country. We'll provide a comprehensive checklist during your consultation.
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
