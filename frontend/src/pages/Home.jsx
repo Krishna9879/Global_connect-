@@ -6,6 +6,7 @@ import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { Services } from '../components/Services';
 import { Features } from '../components/Features';
+import Faq from '../components/Faqs';
 
 const words = [
   "Global Dreams",
@@ -249,7 +250,7 @@ export const Home = () => {
       <StatsSection />
       <Features />
       <Services />
-
+      <Faq />
     </>
   );
 };

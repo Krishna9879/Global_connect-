@@ -2,35 +2,62 @@ import React, { useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import studentvisa from '../assets/student_visa.avif';
-import studyabrod from '../assets/study_abroad.webp';
+import studyabroad from '../assets/study_abroad.webp';
 import universityadmission from '../assets/university_addmission.avif';
 
-// Services Data
+// Services Data with Expanded Content
 const services = [
   {
     title: "Study Abroad Programs",
     description: "Expert guidance for international education opportunities.",
-    image: studyabrod,
-    detailedInfo:
-      "Our Study Abroad Programs offer personalized guidance to help you choose the best universities and courses worldwide. From selecting the right program to preparing your application, we ensure you have the best chance of success. Our team provides end-to-end support, including scholarship assistance and pre-departure briefings.",
+    image: studyabroad,
+    detailedInfo: {
+      overview: "Our Study Abroad Programs offer personalized guidance to help you choose the best universities and courses worldwide. From selecting the right program to preparing your application, we ensure you have the best chance of success.",
+      features: [
+        "Personalized university and course selection",
+        "Application preparation and submission support",
+        "Scholarship and financial aid assistance",
+        "Pre-departure orientation and briefings",
+        "Ongoing support during your study abroad journey"
+      ],
+      benefits: "With our expert team, you’ll gain access to a global network of educational opportunities, tailored to your academic and career goals."
+    },
   },
   {
     title: "Student Visas",
     description: "Comprehensive support for student visa applications.",
     image: studentvisa,
-    detailedInfo:
-      "Navigating the visa process can be complex, but we make it simple. Our experts assist with document preparation, application submission, and interview preparation. We stay updated with the latest visa regulations to ensure a smooth and successful application process.",
+    detailedInfo: {
+      overview: "Navigating the visa process can be complex, but we make it simple. Our experts assist with every step to ensure a smooth and successful application.",
+      features: [
+        "Detailed document checklist and preparation",
+        "Visa application form filling and submission",
+        "Interview preparation and mock sessions",
+        "Updates on latest visa regulations",
+        "Post-approval guidance"
+      ],
+      benefits: "Our meticulous approach minimizes delays and increases approval chances, letting you focus on your education."
+    },
   },
   {
     title: "University Admissions",
     description: "Strategic guidance for university applications worldwide.",
     image: universityadmission,
-    detailedInfo:
-      "Our University Admissions service helps you craft a compelling application that stands out. From writing a strong personal statement to securing recommendation letters, we guide you through every step. We also provide insights into university rankings and program suitability to help you make informed decisions.",
+    detailedInfo: {
+      overview: "Our University Admissions service helps you craft a compelling application that stands out. We guide you through every step to secure your spot.",
+      features: [
+        "Personal statement and essay writing support",
+        "Recommendation letter guidance",
+        "Application strategy for top universities",
+        "Insights into university rankings and programs",
+        "Follow-up with universities on your behalf"
+      ],
+      benefits: "Maximize your admission chances with a standout application tailored to your dream university."
+    },
   },
 ];
 
-// ServiceCard Component
+// ServiceCard Component (Unchanged)
 const ServiceCard = ({ service, index, onCardClick }) => {
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
@@ -63,7 +90,7 @@ const ServiceCard = ({ service, index, onCardClick }) => {
   );
 };
 
-// Modal Component (unchanged)
+// Enhanced Modal Component
 const Modal = ({ isOpen, onClose, selectedService, onNext, onPrev }) => {
   if (!selectedService) return null;
 
@@ -74,45 +101,78 @@ const Modal = ({ isOpen, onClose, selectedService, onNext, onPrev }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
           onClick={onClose}
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-lg p-8 max-w-2xl w-full m-4 relative"
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-800"
-            >
-              <X size={24} />
-            </button>
-
-            <img
-              src={selectedService.image}
-              alt={selectedService.title}
-              className="w-full h-48 object-cover rounded-lg mb-6"
-            />
-            <h3 className="text-2xl font-bold mb-3">{selectedService.title}</h3>
-            <p className="text-gray-600 mb-4">{service.description}</p>
-            <p className="text-gray-700 mb-6">{selectedService.detailedInfo}</p>
-
-            <div className="flex justify-between">
+            {/* Header */}
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 p-6 rounded-t-xl flex justify-between items-center">
+              <h3 className="text-2xl font-bold text-white">{selectedService.title}</h3>
               <button
+                onClick={onClose}
+                className="text-white hover:text-gray-200 transition-colors"
+              >
+                <X size={28} />
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 space-y-6">
+              {/* Image */}
+              <img
+                src={selectedService.image}
+                alt={selectedService.title}
+                className="w-full h-64 object-cover rounded-lg shadow-md"
+              />
+
+              {/* Overview */}
+              <div>
+                <h4 className="text-xl font-semibold text-gray-800 mb-2">Overview</h4>
+                <p className="text-gray-600 leading-relaxed">{selectedService.detailedInfo.overview}</p>
+              </div>
+
+              {/* Features */}
+              <div>
+                <h4 className="text-xl font-semibold text-gray-800 mb-2">What We Offer</h4>
+                <ul className="list-disc list-inside text-gray-600 space-y-2">
+                  {selectedService.detailedInfo.features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Benefits */}
+              <div>
+                <h4 className="text-xl font-semibold text-gray-800 mb-2">Benefits</h4>
+                <p className="text-gray-600 leading-relaxed">{selectedService.detailedInfo.benefits}</p>
+              </div>
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="sticky bottom-0 bg-white p-6 border-t border-gray-200 flex justify-between">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={onPrev}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                className="px-6 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-colors"
               >
                 Previous
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={onNext}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 Next
-              </button>
+              </motion.button>
             </div>
           </motion.div>
         </motion.div>
@@ -121,7 +181,7 @@ const Modal = ({ isOpen, onClose, selectedService, onNext, onPrev }) => {
   );
 };
 
-// Services Component
+// Services Component (Updated)
 export const Services = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedServiceIndex, setSelectedServiceIndex] = useState(0);
@@ -195,7 +255,6 @@ export const Services = () => {
               international education journeys with us. Stay tuned for amazing testimonials and
               real success stories!
             </p>
-          
           </motion.div>
         </motion.div>
       </div>
